@@ -24,14 +24,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
       - name: Convert Markdown to HTML
-        run: |
+        run:
           for file in $(find . -name "*.md"); do
             pandoc "$file" -o "${file%.md}.html"
           done
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
